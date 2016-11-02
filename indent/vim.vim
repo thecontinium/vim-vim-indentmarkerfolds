@@ -65,7 +65,7 @@ function GetVimIndentIntern()
   else
     " A line starting with :au does not increment/decrement indent.
     if prev_text !~ '^\s*au\%[tocmd]'
-      let i = match(prev_text, '\(^\||\)\s*\(\(if\|wh\%[ile]\|for\|try\|cat\%[ch]\|fina\%[lly]\|fu\%[nction]\|el\%[seif]\)\>\|""".*{{{\)')
+      let i = match(prev_text, '\(^\||\)\s*\(\(if\|wh\%[ile]\|for\|try\|cat\%[ch]\|fina\%[lly]\|fu\%[nction]\|el\%[seif]\)\>\|".*{{{\)')
       if i >= 0
 	let ind += shiftwidth()
 	if strpart(prev_text, i, 1) == '|' && has('syntax_items')
@@ -89,7 +89,7 @@ function GetVimIndentIntern()
 
   " Subtract a 'shiftwidth' on a :endif, :endwhile, :catch, :finally, :endtry,
   " :endfun, :else and :augroup END.
-  if cur_text =~ '^\s*\(ene\@!\|cat\|fina\|el\|aug\%[roup]\s*!\=\s\+[eE][nN][dD]\|""".*}}}\)'
+  if cur_text =~ '^\s*\(ene\@!\|cat\|fina\|el\|aug\%[roup]\s*!\=\s\+[eE][nN][dD]\|".*}}}\)'
     let ind = ind - shiftwidth()
   endif
 
